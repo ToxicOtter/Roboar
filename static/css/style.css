@@ -1,8 +1,3 @@
-@font-face {
-    font-family: Menu;
-    src: url(/static/Acens.ttf);
-}
-
 /* --------------------- General ------------------  */
 .row {
     margin: 0;
@@ -10,6 +5,10 @@
 
 .container {
     padding: 70px 0;
+}
+
+body {
+    font-family: 'Work Sans', sans-serif;
 }
 
 /* ---------------------------  Navigation bar --------------------- */
@@ -101,7 +100,7 @@ header, .navbar {
 
 /* ----------------------grid---------------------- */
 
-#about-area {
+#data-area {
     background-color: #F9F9F9;
 }
 
@@ -123,7 +122,7 @@ header, .navbar {
     left: 42.5%;
 }
 
-.about-title {
+.data-title {
     font-size: 17px;
     color: #444;
     text-transform: uppercase;
@@ -138,6 +137,33 @@ header, .navbar {
     margin-top: 20px ;
 }
 
+
+/* ---------------- about area -------------- */
+#about-area {
+    background-color: #F9F9F9;
+}
+
+.about-title {
+    font-size: 17px;
+    color: #444;
+    text-transform: uppercase;
+    font-weight: bold;
+    padding-top: 100px;
+}
+
+.about-image {
+    width: 80%;
+    margin-top: 40px;
+}
+
+/* -------------------- our team area ----------------------- */
+#team-area p {
+    text-align: center;
+}
+
+#team-area h5 {
+    text-align: center;
+}
 
 /* --------------- copy area ------------- */
 #copy-area {
@@ -190,6 +216,33 @@ header, .navbar {
         left: 10%;
         right: 10%;
     }
+
+    /* about-area*/
+    .about-title {
+        padding-top: 40px;
+    }
+
+    #about-area .col-md-6 {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    /* our team */
+    .card-title {
+        font-size: 14px;
+    }
+
+    .card-text {
+        font-size: 12px;
+    }
+
+    #team-area .col-md-2 {
+        width: 400px;
+    }
+
+    .card-body {
+        padding: 0;
+    }
 }
 
 @media(max-width: 425px){
@@ -214,9 +267,41 @@ header, .navbar {
     .carousel-caption .main-btn {
         font-size: 14px;
     }
-
-    #about-area .col-md-6 {
+    
+    /* data */
+    #data-area .col-md-6 {
         width: 50%;
         margin-bottom: 30px;
+    }
+    /*  main title */
+    .main-title {
+        font-size: 30px;
+    }
+
+    /* about */
+    .about-image {
+        display: block;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .about-title {
+        padding-top: 20px;
+        text-align: center;
+    }
+
+    .backend {
+        padding-top: 60px;
+    }
+
+    .last-image {
+        padding-top: 60px;
+    }
+
+    /* team-area */
+    #team-area .col-md-2 {
+        width: 50%;
     }
 }

@@ -6,9 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>PJI</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-    <link type="text/css" href="{{ url_for('static', filename='style.css')}}" rel="stylesheet">
-    <link rel="shortcut icon" href="/static/favicon.ico">
+    <link type="text/css" href="{{ url_for('static', filename='css/style.css')}}" rel="stylesheet">
+    <link rel="shortcut icon" href="/static/images/favicon.ico">
 </head>
+
+<!-- Font -->
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;700&display=swap" rel="stylesheet">
 
 <!-- scripts jquery, popper and bootstrap -->
 <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
@@ -26,7 +30,7 @@
 
 <!-- script of my own js -->
 <!-- <script src="/static/script.js"></script> -->
-<script src="{{ url_for('static', filename='script.js')}}""></script>
+<script src="{{ url_for('static', filename='js/script.js')}}""></script>
 
 <body>
 
@@ -35,7 +39,7 @@
     <div class="container" id="nav-container">
         <nav class="navbar navbar-expand-lg fixed-top navbar-dark">
             <a href="#" class="navbar-brand">
-                <img id="logo" src="/static/new-logo.png" alt="logo"> Roboar
+                <img id="logo" src="/static/images/new-logo.png" alt="logo"> Roboar
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-links" aria-controls="navbar-links" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -43,8 +47,10 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbar-links">
                 <div class="navbar-nav">
                     <a class="nav-item nav-link" id="home-menu">Home</a>
-                    <a class="nav-item nav-link" id="dashboard-menu" href="http://roboaranalytics.pythonanywhere.com/dashboard">Painel de Controle</a>
-                    <a class="nav-item nav-link" id="about-menu" href="http://roboaranalytics.pythonanywhere.com/about">Sobre nós</a>
+                    <a class="nav-item nav-link" id="data-menu">Dados</a>
+                    <a class="nav-item nav-link" id="about-menu">Sobre o Projeto</a>
+                    <a class="nav-item nav-link" id="team-menu">Sobre nós</a>
+                    <a class="nav-item nav-link" id="dashboard-menu" target="blank" href="http://roboaranalytics.pythonanywhere.com/dashboard">Painel de Controle</a>
                 </div>
             </div>
         </nav>
@@ -60,18 +66,19 @@
             <ol class="carousel-indicators">
                 <li data-target="#mainSlider" data-slide-to="0" class="active"></li>
                 <li data-target="#mainSlider" data-slide-to="1"></li>
+                <li data-target="#mainSlider" data-slide-to="2"></li>
             </ol>
 
             <!-- slide contents-->
             <div class="carousel-inner">
                 <!-- slide content 1 -->
                 <div class="carousel-item active">
-                    <img src="/static/Roadsec.jpeg" class="d-block w-100" alt="Confira os principais dados abaixo">
+                    <img src="/static/images/Roadsec.jpeg" class="d-block w-100" alt="Confira os principais dados abaixo">
                     <!-- text of slide -->
                     <div class="carousel-caption d-md-block">    
                         <h2>Observe abaixo os principais dados em tempo real!</h2>
-                        <p>Tralala</p>
-                        <a href="#about-area" class="main-btn">Ver dados</a>
+                        <p>Acompanhe a coleta de dados de seu robô</p>
+                        <a class="main-btn" id="data-slide">Ver dados</a>
                     </div>
                 </div>
 
@@ -79,14 +86,27 @@
                 <!-- slide content 2-->
                 <!-- image of slide -->
                 <div class="carousel-item">
-                    <img src="/static/background.png" class="d-block w-100" alt="Confira mais sobre o projeto">
+                    <img src="/static/images/background.png" class="d-block w-100" alt="Confira mais sobre o projeto">
                     <!-- text of slide -->
                     <div class="carousel-caption d-md-block">    
-                        <h2>Confira mais informações sobre nosso projeto!</h2>
-                        <p>Tralala</p>
-                        <a href="#" class="main-btn">Conferir projeto</a>
+                        <h2>Venha conhecer nosso projeto!</h2>
+                        <p>Descubra cada etapa de desenvolvimento</p>
+                        <a class="main-btn" id="project-slide">Conferir projeto</a>
                     </div>
                 </div>
+
+                <!-- slide content 3 -->
+                <!-- image of slide -->
+                <div class="carousel-item">
+                    <img src="/static/images/Roadsec.jpeg" class="d-block w-100" alt="Confira mais sobre os desenvolvedores">
+                    <!-- text of slide -->
+                    <div class="carousel-caption d-md-block">    
+                        <h2>Dados específicos em nosso dashboard!</h2>
+                        <p>Acompanhe o registro de dados em tabelas e gráficos</p>
+                        <a href="http://roboaranalytics.pythonanywhere.com/dashboard" class="main-btn" target="blank">Painel de Controle</a>
+                    </div>
+                </div>
+
             </div>
             
             <!-- arrow to change slide -->
@@ -101,19 +121,19 @@
 
         </div>
 
-        <!-- grid -->
-        <div id="about-area">
+        <!-- data area -->
+        <div id="data-area">
             <div class="container">
                 <div class="row">
                     <div class="col-12"> <!-- 12 colunes -->
                         <h3 class="main-title">Dados em tempo real</h3>
                     </div>
                     <div class="col-md-6"> <!-- respect determinated space of page -->
-                        <h3 class="about-title">Dados de tal</h3>
+                        <h3 class="data-title">Dados de tal</h3>
                         <p id="data1">Teste</p>
                     </div>
                     <div class="col-md-6"> <!-- respect determinated space of page -->
-                        <h3 class="about-title">Dados de fal</h3>
+                        <h3 class="data-title">Dados de fal</h3>
                         <p id="data2">Teste</p>
                     </div>
                 </div>
@@ -121,6 +141,103 @@
 
         </div>
 
+        <!-- about area -->
+        <div id="about-area">
+            <div class="container">
+                <!-- prototype -->
+                <div class="row">
+                    <div class="col-12">
+                        <h3 class="main-title">Sobre o projeto</h3>
+                    </div>
+                    <div class="col-md-6">
+                        <img class="img-fluid about-image" src="/static/images/prototype.jpg" alt="Protótipo do projeto">
+                    </div>
+                    <div class="col-md-6">
+                        <h3 class="about-title">Protótipo</h3>
+                        <p>Desenvolvemos o protótipo de um robô embuído com diferentes sensores para coletar os dados do ambiente. Para deslocar-se, ele conta com 4 rodas acopladas em sua base.</p>
+                    </div>
+
+                    <!-- backend -->
+                    <div class="col-md-6">
+                        <h3 class="about-title backend">Back-end</h3>
+                        <p>Progamamos o servidor em Python. Ele hospeda o site por meio da biblioteca Flask e gerencia o recebimento de dados do protótipo, salvando-os no banco de dados SQLite.</p>
+                    </div>
+                    <div class="col-md-6">
+                        <img class="img-fluid about-image" src="/static/images/backend.jpg" alt="Protótipo do projeto">
+                    </div>
+
+                    <!-- frontend -->
+                    <div class="col-md-6">
+                        <img class="img-fluid about-image last-image" src="/static/images/frontend.png" alt="Protótipo do projeto">
+                    </div>
+                    <div class="col-md-6">
+                        <h3 class="about-title">Front-end</h3>
+                        <p>Desenvolvemos o site em HTML, estilizando com CSS. Para torná-lo responsivo, usamos a biblioteca Bootstrap do JavaScript, também usada para extruturação.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Our Team -->
+        <div id="team-area">
+            <div class="container">
+                <div class="row d-flex justify-content-center">
+                    <div class="col-12">
+                        <h3 class="main-title">Sobre nós</h3>
+                    </div>
+                    <!-- Guilherme's card -->
+                    <div class="col-md-2">
+                        <div class="card">
+                            <img src="/static/images/picture.png" alt="Foto de perfil do Guilherme">
+                            <div class="card-body">
+                                <h5 class="card-title">Guilherme</h5>
+                                <p class="card-text">Desenvolvedor Protótipo</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Kevin's card -->
+                    <div class="col-md-2">
+                        <div class="card">
+                            <img src="/static/images/picture.png" alt="Foto de perfil do Kevin">
+                            <div class="card-body">
+                                <h5 class="card-title">Kevin</h5>
+                                <p class="card-text">Designer e Desenvolvedor Protótipo</p>
+                            </div>
+                        </div>
+                    </div>    
+                    <!-- Leonardo's card -->
+                    <div class="col-md-2">
+                        <div class="card">
+                            <img src="/static/images/picture.png" alt="Foto de perfil do Leonardo">
+                            <div class="card-body">
+                                <h5 class="card-title">Leonardo</h5>
+                                <p class="card-text">Desenvolvedor Back-end</p>
+                            </div>
+                        </div>
+                    </div>    
+                    <!-- Luan's card -->
+                    <div class="col-md-2">
+                        <div class="card">
+                            <img src="/static/images/picture.png" alt="Foto de perfil do Luan">
+                            <div class="card-body">
+                                <h5 class="card-title">Luan</h5>
+                                <p class="card-text">Desenvolvedor Front-end</p>
+                            </div>
+                        </div>
+                    </div>    
+                    <!-- Thaylor's card -->
+                    <div class="col-md-2">    
+                        <div class="card">
+                            <img src="/static/images/picture.png" alt="Foto de perfil do Thaylor">
+                            <div class="card-body">
+                                <h5 class="card-title">Thaylor</h5>
+                                <p class="card-text">Desenvolvedor Protótipo</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </div>
 </main>

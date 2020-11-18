@@ -13,10 +13,6 @@ def home():
 def dashboard():
     return flask.render_template('dashboard.html')
 
-@app.route('/about')
-def about():
-    return flask.render_template('sobre-nos.html')
-
 
 #########################################################Data Routes#######################################
 

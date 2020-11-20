@@ -9,6 +9,10 @@
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <!-- css -->
     <link type="text/css" href="{{ url_for('static', filename='css/dashboard.css')}}" rel="stylesheet">
+    <!-- favicon -->
+    <link rel="shortcut icon" href="/static/images/favicon.ico">
+    <!-- font -->
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
 
 
@@ -28,7 +32,7 @@
             <div>
                 <a href="#" class="nav__logo">
                     <i class="bx bx-layer nav__logo-icon"></i>
-                    <span class="nav__logo-name">Bedimcode</span>
+                    <span class="nav__logo-name">Roboar</span>
                 </a>
 
                 <div class="nav__list">
@@ -66,8 +70,34 @@
         </nav>
     </div>
 
-    <h1>Components</h1>
+    <main>
+        <!-- commom text above chart -->
+        <h1>Sensor de Fumaça</h1>
+        <p>Analise o desempenho dos sensores por meio de gráfico e tabela</p>
+        <!-- instance chart -->
+        <canvas class="line-chart"></canvas>
 
+        <div class="container">
+            <h2>Tabela</h2>
+            <!-- table -->
+            <ul class="responsive-table">
+                <!-- table header -->
+                <li class="table-header">
+                    <div class="col col-1">Temperatura</div>
+                    <div class="col col-2">Tempo</div>
+                </li>
+                <!-- a li to each table row-->
+                <li class="table-row">
+                    <div class="col col-1" data-label="Temperatura">28ºC</div>
+                    <div class="col col-2" data-label="Tempo">20h45</div>
+                </li>
+            </ul>
+        </div>
+    </main>
+    
+
+    <!-- charts.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
     <!-- js -->
     <script src="{{ url_for('static', filename='js/dashboard.js')}}""></script>
 </body>

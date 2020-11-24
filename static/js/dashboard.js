@@ -38,6 +38,11 @@ function colorLink(){
 linkColor.forEach(l => l.addEventListener('click', colorLink));
 
 
+//DATA FROM THE SERVER
+var temperatureV1 = ["Jan","Fev","Mar","Abr","Mai"];
+var temperatureV1 = ["Jan","Fev","Mar","Abr","Mai"];
+var temperatureV2 = [5,4,10,4,6,6,7];
+
 //CHARTS
 // everytime we work with canvas, we need to set a context, in this case it's 2D (default)
 var ctx = document.getElementsByClassName('line-chart');
@@ -47,10 +52,10 @@ var chartGraph = new Chart(ctx, {
     type: 'line', //set the type of chart
     //set data of char
     data: {
-        labels: ["Jan","Fev","Mar","Abr","Mai"],
+        labels: temperatureV1,
         datasets: [{
             label: "Indice de fumaça no ambiente",
-            data: [5,4,10,4,6,6,7,],
+            data: temperatureV2,
             borderWidth: 1,
             borderColor: 'rgba(77,176,253,0.75)',
             backgroundcolor: 'transparent',
@@ -58,3 +63,52 @@ var chartGraph = new Chart(ctx, {
     }
 });
 
+/*TABLE
+function generateTable(table){
+    let thead = table.createTHead();
+    let row = thead.insertRow();
+};
+
+let table = document.querySelector("table");
+generateTable(table)
+
+var temperature;
+var requestJson = "https://cors-anywhere.herokuapp.com/http://roboaranalytics.pythonanywhere.com/data/Temperature";
+
+var request = new XMLHttpRequest();
+request.open('GET', requestJson);
+request.responseType = 'json';
+request.send();
+
+request.onload = function(){
+    temperature = request.response;
+};
+
+afonso = JSON.parse(temperature);
+console.log(afonso);
+  
+var table = "";
+var rows = 2;
+var cols = 3;
+
+for (var r = 0; r < rows; r++){
+    table += '<tr>'
+    for (var c = 1; c <= cols; c++){
+        table += '<td>' + c + '</td>';
+    }
+    table += '</tr>'
+};
+
+document.write("<table>" + table + "</table>")
+document.write(temperature)*/
+
+function getDat(){
+    $.ajax({
+        type: "GET",
+        url: "http://roboaranalytics.pythonanywhere.com/data/Temperature",
+        dataType: 'json',
+        success: function(data) {
+            $('#teste').text(data[1]);
+        }
+    });
+};

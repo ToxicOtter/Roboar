@@ -20,30 +20,6 @@ def dashboard():
 
 
 
-#########################################################Data Routes#######################################
-
-
-
-
-@app.route('/_get_data/', methods=['POST'])
-def _get_data():
-    print("chegou")
-    myList = ["1","2","3","4"]
-    return flask.jsonify({'data': flask.render_template('response.html', myList=myList)})
-    print("gone")
-
-
-
-
-
-
-
-
-
-
-
-
-
 ###################### to solve problem with browser cache #########################
 @app.context_processor
 def override_url_for():

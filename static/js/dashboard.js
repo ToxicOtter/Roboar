@@ -8,7 +8,6 @@ $(document).ready(function(){
             url: "https://cors-anywhere.herokuapp.com/http://roboaranalytics.pythonanywhere.com/data/Temperature",
             dataType: 'json',
             success: function(data) {
-                //$('#teste').text(data);
                 temperatureData = Object.entries(data);
                 chart(temperatureData);
                 listMaker(temperatureData);
@@ -76,7 +75,7 @@ function chart(temperatureData){
         data: {
             labels: temperatureV1,
             datasets: [{
-                label: "Indice de fumaça no ambiente",
+                label: "Indice de temperatura do ambiente",
                 data: temperatureV2,
                 borderWidth: 1,
                 borderColor: 'rgba(77,176,253,0.75)',
@@ -104,8 +103,8 @@ function listMaker(temperatureData){
     listHeader.className += "table-header"; //add class to list header
     listH1.className += "col col-1"; //add class to list header 1
     listH2.className += "col col-2"; //add class to list header 2
-    listH1.appendChild(document.createTextNode("Temperatura")); //add the first list header title
-    listH2.appendChild(document.createTextNode("Valor")); //add the second list header title
+    listH1.appendChild(document.createTextNode("Data")); //add the first list header title
+    listH2.appendChild(document.createTextNode("Temperatura (em ºC)")); //add the second list header title
 
 
     //give classes and ids

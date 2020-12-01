@@ -17,7 +17,9 @@ def home():
 def dashboard():
     return flask.render_template('dashboard.html')
 
-
+@app.route('/login')
+def login():
+    return flask.render_template('login.html')
 
 
 ###################### to solve problem with browser cache #########################

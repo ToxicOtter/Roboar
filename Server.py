@@ -7,7 +7,6 @@ app.config["DEBUG"] = True
 import Database
 
 
-
 #########################################################Front-End Routes#######################################
 @app.route('/')
 def home():
@@ -36,6 +35,60 @@ def dated_url_for(endpoint, **values):
             values['q'] = int(os.stat(file_path).st_mtime)
     return flask.url_for(endpoint, **values)
 
+#########################################################LOGIN#######################################
+
+
+
+
+@app.route("/login_user",methods=["POST"])
+def login_user():
+
+    data = flask.request.json
+    print(type(data))
+
+    response = {}
+
+
+    #Check if the user exists
+    if(Database.exists("User","Name",data["Name"])):
+
+        #Then checks if the password matches
+        if(data["Password"]==Database.get_pass(data["Name"])):
+
+            response["Code"] = 1
+            response["Message"] = "Login bem sucedido!"
+        else:
+            response["Code"] = 2
+            response["Message"] = "Senha incorreta"
+    
+    else:
+        response["Code"] = 0
+        response["Message"] = "Usuário inexistente, faça o registro"
+
+
+    return response
+
+
+@app.route("/register_user",methods=["POST"])
+def register_user():
+    data = flask.request.json
+
+    response = {}
+    #Checks if it's a valid input
+
+
+    #Checks if the name already exists, if not registers
+    if(not Database.exists("User","Name",data["Name"]) ):
+
+        Database.insert_table("User",[data["Name"],data["Password"]])
+        response["Code"] = 1
+        response["Message"] = "Registro bem-sucedido, faça o login"
+
+    else:
+        response["Code"] = 0
+        response["Message"] = "Nome de usuário indisponível"
+    
+    return flask.jsonify(response)
 
 
 #########################################################GET#######################################

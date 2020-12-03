@@ -2,7 +2,7 @@ from os import path
 ROOT = path.dirname(path.realpath(__file__))
 import sqlite3
 
-def get_connection(table):
+def get_connection():
     con = sqlite3.connect(ROOT+"/databases/"+f"data.bd")
     cursor = con.cursor()
     return con,cursor
@@ -11,7 +11,7 @@ def get_connection(table):
 
 
 def create_table(table:str, collums:list):
-    con,cursor = get_connection(table)
+    con,cursor = get_connection()
 
     cols = ""
     for collum in collums:
@@ -26,7 +26,7 @@ def create_table(table:str, collums:list):
 
 #########################################################Inserções#############################################
 def insert_table(table:str,data:list):
-    con,cursor = get_connection(table)
+    con,cursor = get_connection()
 
     values = "("
     for value in data:
@@ -44,7 +44,7 @@ def insert_table(table:str,data:list):
 #########################################################Requisições############################################
 
 def get_table(table:str,rows:int=10,order:int=0):
-    con,cursor = get_connection(table)
+    con,cursor = get_connection()
     
     query = f"""SELECT * FROM {table}"""
 
@@ -55,7 +55,6 @@ def get_table(table:str,rows:int=10,order:int=0):
 
     query += f" LIMIT {rows}"
 
-    print(query)
     cursor.execute(query)
 
     data = cursor.fetchall()
@@ -63,7 +62,7 @@ def get_table(table:str,rows:int=10,order:int=0):
     return data
 
 def get_table_last_row(table:str):
-    con,cursor = get_connection(table)
+    con,cursor = get_connection()
     
     query = f"""SELECT * FROM {table} """
 
@@ -73,7 +72,43 @@ def get_table_last_row(table:str):
 
     return data
 
+def get_row(table:str,row:str):
+    con,cursor = get_connection()
+    
+    query = f"""SELECT {row} FROM {table} """
 
+    cursor.execute(query)
+
+    data = cursor.fetchall()
+
+    return data
+
+def exists(table:str,row:str,value:str):
+    con,cursor = get_connection()
+
+    query = f"SELECT EXISTS(SELECT {row} FROM {table} WHERE {row}='{value}')"
+    print(query)
+
+    cursor.execute(query)
+
+    data = cursor.fetchall()
+
+    return data[0][0]
+
+#########################################################Login#############################################
+
+def get_pass(user:str):
+    con,cursor = get_connection()
+    
+    query = f"""SELECT Password FROM User WHERE Name='{user}'"""
+
+
+
+    cursor.execute(query)
+
+    data = cursor.fetchall()
+
+    return data[0][0]
 
 ########################################################################################################
 
@@ -83,5 +118,6 @@ def get_table_last_row(table:str):
 #app.run()
 
 ##create_table("Temperature",[["Date","TEXT"],["Value","INTEGER"]])
+##wcreate_table("User",[["Name","TEXT PRIMARY KEY"],["Password","TEXT"]])
 
 

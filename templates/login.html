@@ -8,29 +8,29 @@
     <title>Roboar Analytics</title>
 </head>
 <body>
-    <div class="hero">
-        <div class="form-box">
-            <div class="button-box">
+    <div class="hero"> <!-- form container -->
+        <div class="form-box"> 
+            <div class="button-box"> <!-- buttons on the top of the page -->
                 <div id="btn"></div>
-                <button type="button" class="toggle-btn" onclick="login()">Log In</button>
-                <button type="button" class="toggle-btn" onclick="register()">Register</button>
+                <button type="button" class="toggle-btn" onclick="login()">Log In</button> <!-- Login button -->
+                <button type="button" class="toggle-btn" onclick="register()">Registrar</button> <!-- register buttom -->
             </div>
-            <div class="social-icons">
-                <img src="{{url_for('static', filename='images/facebook.png')}}" alt="Login with Facebook">
-                <img src="{{url_for('static', filename='images/google.png')}}" alt="Login with Google">
+            <div class="social-icons"> <!-- buttons to login with facebook and google -->
+                <img src="{{url_for('static', filename='images/facebook.png')}}" alt="Login with Facebook"> <!-- facebook login -->
+                <img src="{{url_for('static', filename='images/google.png')}}" alt="Login with Google"> <!-- google login -->
             </div>
-            <form id="login" class="input-group">
-                <input type="text" class="input-field" placeholder="User Id" required>
-                <input type="text" class="input-field" placeholder="Enter Password" required>
-                <input type="checkbox" class="check-box"><span>Remember password</span>
+            <form id="login" class="input-group">  <!-- Space to enter user id and password for login -->
+                <input type="text" class="input-field" placeholder="Nome do Usuário" required>
+                <input type="text" class="input-field" placeholder="Senha" required>
+                <input type="checkbox" class="check-box"><span>Lembrar senha</span>
                 <button type="submit" class="submit-btn">Log In</button>
             </form>
-            <form id="register" class="input-group">
-                <input type="text" class="input-field" placeholder="User Id" required>
-                <input type="text" class="input-field" placeholder="Email Id" required>
-                <input type="text" class="input-field" placeholder="Enter Password" required>
-                <input type="checkbox" class="check-box"><span>I agree with terms & conditions</span>
-                <button type="submit" class="submit-btn">Register</button>
+            <form id="register" class="input-group"> <!-- Space to enter user id, password and email for register -->
+                <input type="text" class="input-field" placeholder="Nome do Usuário" required>
+                <input type="text" class="input-field" placeholder="Email" required>
+                <input type="text" class="input-field" placeholder="Senha" required>
+                <input type="checkbox" class="check-box"><span>Eu concordo com os termos de uso</span>
+                <button type="submit" class="submit-btn">Registrar</button>
             </form>
         </div>
     </div>

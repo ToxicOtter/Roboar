@@ -118,6 +118,6 @@ def get_pass(user:str):
 #app.run()
 
 ##create_table("Temperature",[["Date","TEXT"],["Value","INTEGER"]])
-##wcreate_table("User",[["Name","TEXT PRIMARY KEY"],["Password","TEXT"]])
+##create_table("User",[["Name","TEXT PRIMARY KEY"],["Password","TEXT"]])
 
 

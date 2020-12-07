@@ -20,7 +20,6 @@ def dashboard():
 def login():
     return flask.render_template('login.html')
 
-
 ###################### to solve problem with browser cache #########################
 @app.context_processor
 def override_url_for():

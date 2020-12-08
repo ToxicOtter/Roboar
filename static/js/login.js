@@ -22,16 +22,17 @@ function login(){
     let value2 = Object.values(a[1]); 
     let userName = String(value1[1]);
     let userPass = String(value2[1]);
-    let credentials = [];
-    credentials = [{"Name":userName,"Password":userPass}];
-    let test  = JSON.stringify(credentials);
-    console.log(test);
-    console.log(typeof(test));
+
+    let credentials = {"Name":userName,"Password":userPass};
+
+    
+    console.log(credentials)
     console.log(typeof(credentials));
     $.ajax({
         type: "POST",
         url: "/login_user",
-        data: test,
+        data: JSON.stringify(credentials),
+        contentType: "application/json",
         success: function(resp){
             console.log(Object.entries(resp));
         }

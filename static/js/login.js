@@ -18,9 +18,26 @@ function loginMove(){
 
 function login(){
     let a = $("form").serializeArray();
-    let values = Object.values(a[0]); 
-    console.log(values[1]);
-    console.log(Object.keys(a[0]));
+    let value1 = Object.values(a[0]);
+    let value2 = Object.values(a[1]); 
+    let userName = String(value1[1]);
+    let userPass = String(value2[1]);
+    let credentials = [];
+    credentials = [{"Name":userName,"Password":userPass}];
+    let test  = JSON.stringify(credentials);
+    console.log(test);
+    console.log(typeof(test));
+    console.log(typeof(credentials));
+    $.ajax({
+        type: "POST",
+        url: "/login_user",
+        data: test,
+        success: function(resp){
+            console.log(Object.entries(resp));
+        }
+    });
+
+
 };
 
 function register(){

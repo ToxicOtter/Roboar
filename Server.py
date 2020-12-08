@@ -1,5 +1,6 @@
 import flask
 import os
+import json
 
 app = flask.Flask(__name__)
 app.config["DEBUG"] = True
@@ -19,6 +20,12 @@ def dashboard():
 @app.route('/login')
 def login():
     return flask.render_template('login.html')
+
+@app.route('/_test/',methods=["POST"])
+def test():
+    print("chegou")
+    myList = [1,2,3,4]
+    return flask.jsonify(myList)
 
 ###################### to solve problem with browser cache #########################
 @app.context_processor
@@ -42,27 +49,31 @@ def dated_url_for(endpoint, **values):
 @app.route("/login_user",methods=["POST"])
 def login_user():
 
-    data = flask.request.json
-    print(type(data))
+    #data = flask.request.json
+    teste = flask.request.args["Name"]
+    bruteData = flask.request.values
+    data = json.dumps(bruteData)
+    print(teste)
+    #print(type(data))
 
     response = {}
 
 
     #Check if the user exists
-    if(Database.exists("User","Name",data["Name"])):
+    #if(Database.exists("User","Name",data["Name"])):
 
         #Then checks if the password matches
-        if(data["Password"]==Database.get_pass(data["Name"])):
+        #if(data["Password"]==Database.get_pass(data["Name"])):
 
-            response["Code"] = 1
-            response["Message"] = "Login bem sucedido!"
-        else:
-            response["Code"] = 2
-            response["Message"] = "Senha incorreta"
+            #response["Code"] = 1
+            #response["Message"] = "Login bem sucedido!"
+        #else:
+            #response["Code"] = 2
+            #response["Message"] = "Senha incorreta"
     
-    else:
-        response["Code"] = 0
-        response["Message"] = "Usuário inexistente, faça o registro"
+    #else:
+        #response["Code"] = 0
+        #response["Message"] = "Usuário inexistente, faça o registro"
 
 
     return response

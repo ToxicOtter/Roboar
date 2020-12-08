@@ -2,6 +2,7 @@ import discord
 from requests import get
 from json import loads
 
+import misc
 
 intents = discord.Intents.all()
 client = discord.Client(intents=intents)
@@ -33,9 +34,13 @@ async def on_message(message):
                 response = get(url)
                 
                 data = loads(response.text)
-                for value in data:
-                    await message.channel.send(f"Data: {value[0]} Valor: {value[1]}" )
-                print(f"data from table {command[2]}")
+                print(data)
+
+                table = misc.genTableString(data,["Data","Valor"])
+
+                embed = misc.genEmbed("Tabela",table,f"Tabela de {command[2]}")
+
+                await message.channel.send(content=None,embed=embed)
             
         except:
            await message.channel.send("Comando inválido")
@@ -50,7 +55,7 @@ async def on_message(message):
 
 
 
-token = open("token.txt", 'r',encoding="utf-8").read()
+token = open("bot/token.txt", 'r',encoding="utf-8").read()
 
 client.run(token)
 

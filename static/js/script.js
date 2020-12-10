@@ -14,9 +14,6 @@ $(document).ready(function(){
                 }
             });
             function actualize(tempperatureData){
-                var date = new Date().getTime();
-                /*var string = "Timestamp: "+date;*/
-                var string = Math.floor(Math.random() * 10);
                 var otherstring = Math.floor(Math.random() * 10);
                 setTimeout(setTime, 3000);
                 $('#data1').html(String(temperatureData[0][1][1]));

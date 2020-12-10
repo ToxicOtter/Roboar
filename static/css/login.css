@@ -73,8 +73,8 @@
 }
 
 .input-field {
-    width: 100%;
-    padding: 10px 0;
+    width: 90%;
+    padding: 10px 10px;
     margin: 5px 0;
     border-left: 0;
     border-top: 0;
@@ -103,8 +103,7 @@
 span {
     color: #777;
     font-size: 12px;
-    bottom: 68px;
-    position: absolute;
+    /*bottom: 68px;*/
 }
 
 #login {
@@ -113,4 +112,23 @@ span {
 
 #register {
     left: 450px;
+}
+
+#alertLogin, #alertRegister {
+    position: relative;
+    margin: 40px auto auto auto;
+    display: none;
+    width: 80%;
+    background-color: rgba(250,11,11,.5);
+    padding: 10px 7px;
+    border-radius: 5px;
+}
+
+#alertLogin p, #alertRegister p {
+    text-align: center;
+}
+
+.i {
+    margin-right: -130px;
+    cursor: pointer;
 }

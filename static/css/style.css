@@ -39,6 +39,10 @@ header, .navbar {
     color: #FFF;
 }
 
+.nav-item:hover {
+    cursor: pointer;
+}
+
 .navbar-expand-lg .navbar-nav .nav-link {
     padding: 1rem .8rem;
 }
@@ -91,6 +95,7 @@ header, .navbar {
     color: #FFF;
     background-color: transparent;
     border-color: #002030;
+    cursor: pointer;
 }
 
 .carousel-indicators .active {

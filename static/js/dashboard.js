@@ -1,14 +1,17 @@
 var temperatureData = [];
 
+
 $(document).ready(function(){
     //GET DATA FROM JSON
     function getDat(){
         $.ajax({
             type: "GET",
-            url: "https://cors-anywhere.herokuapp.com/http://roboaranalytics.pythonanywhere.com/data/Temperature",
+            //url: "https://cors-anywhere.herokuapp.com/http://roboaranalytics.pythonanywhere.com/data/Temperature",
+            url: "http://127.0.0.1:5000/data/Leonardo/Temperature",
             dataType: 'json',
             success: function(data) {
                 temperatureData = Object.entries(data);
+                console.log(temperatureData)
                 chart(temperatureData);
                 listMaker(temperatureData);
             }

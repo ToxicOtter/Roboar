@@ -201,6 +201,10 @@ h2 {
     flex-basis: 40%;
 }
 
+div#listDiv {
+    display: none;
+}
+
 /* -------------------- gerenal ------------------------- */
 h1 {
     text-align: center;
@@ -210,6 +214,28 @@ h1 {
 p {
     text-align: center;
     font-family: 'Raleway', sans-serif;
+}
+
+/* ------------------- data area ------------------------ */
+.data-title {
+    font-size: 17px;
+    color: #444;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* ------------------- data --------------- */
+#data1 , #data2 {
+    font-size: 40px;
+    text-align: center;
+    margin-top: 20px ;
+}
+
+
+/* ----------------- graph area ------------ */
+#chart {
+    display: none;
 }
 
 /* ----------------- responsive sidebar ----------------- */

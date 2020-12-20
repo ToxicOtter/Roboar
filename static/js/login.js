@@ -24,6 +24,12 @@ function login(){
     let userPass = String(value2[1]);
 
     let credentials = {"Name":userName,"Password":userPass};
+    let localname = localStorage.setItem("Name",userName);
+    let localPush = localStorage.getItem("Name");
+
+    if (localPush != ""){
+        console.log(localPush);
+    };
     
     $.ajax({
         type: "POST",
@@ -49,7 +55,7 @@ function login(){
             setTimeout(redirect(),500);
 
             function redirect(){
-                window.location = "http://roboaranalytics.pythonanywhere.com";
+                window.location = "/dashboard";
             };
         } else if (result[0][1] == 2){
             loginPara.innerHTML = String(result[1][1]);
@@ -115,10 +121,11 @@ toggleReg.addEventListener('click', function(e){
 
 const remeber = document.getElementById("rememberPassword");
 remeber.addEventListener('change',function(){
-    if(this.checked){
+    /*if(this.checked){
         var fields = document.querySelectorAll('input[type="password"]');
         for (var i = 0; i < fields.length; i++) {
             fields[i].autocomplete="on";
         };
-    };
+    };*/
+    console.log("batatinha");
 });

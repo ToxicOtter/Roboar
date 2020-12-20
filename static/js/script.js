@@ -29,7 +29,6 @@ $(document).ready(function(){
 
     //areas
     let slider = $('#mainSlider');
-    let data = $('#data-area');
     let about = $('#about-area');
     let team = $('#team-area');
 
@@ -39,9 +38,7 @@ $(document).ready(function(){
         //"ifs" to redirect to the area
         let btnId = $(this).attr('id');
 
-        if (btnId == 'data-menu'){
-            scrollTo = data;
-        } else if (btnId == 'about-menu'){
+        if (btnId == 'about-menu'){
             scrollTo = about;
         } else if (btnId == 'team-menu'){
             scrollTo = team;
@@ -59,9 +56,7 @@ $(document).ready(function(){
         //same explanation of the above
         let mainId = $(this).attr('id');
 
-        if (mainId == 'data-slide'){
-            scrollTo = data;
-        } else if (mainId == 'project-slide'){
+        if (mainId == 'project-slide'){
             scrollTo = about;
         }
 

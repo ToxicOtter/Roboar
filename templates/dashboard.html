@@ -28,6 +28,7 @@
         <div class="header__img">
             <img src="/static/images/new-logo.png" alt="Logo">
         </div>
+        <p id="userName">Nome do Usuário</p>
     </header>
 
     <div class="l-navbar" id="nav-bar">
@@ -39,17 +40,17 @@
                 </a>
 
                 <div class="nav__list">
-                    <a href="#" class="nav__link active">
+                    <a href="#" class="nav__link active" id="data-show">
+                        <i class='bx bx-time'></i>
+                        <span class="nav__name">Dados em tempo real</span>
+                    </a>
+                    <a href="#" class="nav__link" id="temperatureId">
                         <i class="bx bxs-flame nav__icon"></i>
                         <span class="nav__name">Temperatura</span>
                     </a>
                     <a href="#" class="nav__link">
                         <i class="bx bx-wind nav__icon"></i>
                         <span class="nav__name">Fumaça</span>
-                    </a>
-                    <a href="#" class="nav__link">
-                        <i class="bx bx-message-square-detail nav__icon"></i>
-                        <span class="nav__name">Messages</span>
                     </a>
                     <a href="#" class="nav__link">
                         <i class="bx bx-bookmark nav__icon"></i>
@@ -65,8 +66,7 @@
                     </a>
                 </div>
             </div>
-
-            <a href="" class="nav__link">
+            <a href="/login" class="nav__link">
                 <i class="bx bx-log-out nav__icon"></i>
                 <span class="nav__name">Log Out</span>
             </a>
@@ -74,12 +74,35 @@
     </div>
 
     <main>
-        <!-- commom text above chart -->
-        <h1>Sensor de Temperatura</h1>
-        <p>Gráfico de temperatura em graus ºC por tempo.</p>
-        <!-- instance chart -->
-        <canvas class="line-chart"></canvas>
+        <!-- data area -->
+        <div id="data-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12"> <!-- 12 colunes -->
+                        <h1>Dados em tempo real</h1>
+                    </div>
+                    <div class="col-md-6"> <!-- respect determinated space of page -->
+                        <h3 class="data-title">Temperatura (ºC)</h3>
+                        <p id="data1">Teste</p>
+                    </div>
+                    <div class="col-md-6"> <!-- respect determinated space of page -->
+                        <h3 class="data-title">Dados de fal</h3>
+                        <p id="data2">Teste</p>
+                    </div>
+                </div>
+            </div>
+        </div>
 
+        <div id="chart">
+            <!-- commom text above chart -->
+            <h1>Sensor de Temperatura</h1>
+            <p>Gráfico de temperatura em graus ºC por tempo.</p>
+            <!-- instance chart -->
+            <canvas class="line-chart"></canvas>
+        </div>
+
+        <div id="listDiv"></div>
+        
         <!--<div class="container">
             <h2>Tabela</h2>
 

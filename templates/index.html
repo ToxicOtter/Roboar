@@ -46,10 +46,9 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbar-links">
                 <div class="navbar-nav">
                     <a class="nav-item nav-link" id="home-menu">Home</a>
-                    <a class="nav-item nav-link" id="data-menu">Dados</a>
                     <a class="nav-item nav-link" id="about-menu">Sobre o Projeto</a>
                     <a class="nav-item nav-link" id="team-menu">Sobre nós</a>
-                    <a class="nav-item nav-link" id="dashboard-menu" target="blank" href="http://roboaranalytics.pythonanywhere.com/dashboard">Painel de Controle</a>
+                    <a class="nav-item nav-link" id="dashboard-menu" target="blank" href="/login">Painel de Controle</a>
                 </div>
             </div>
         </nav>
@@ -65,7 +64,6 @@
             <ol class="carousel-indicators">
                 <li data-target="#mainSlider" data-slide-to="0" class="active"></li>
                 <li data-target="#mainSlider" data-slide-to="1"></li>
-                <li data-target="#mainSlider" data-slide-to="2"></li>
             </ol>
 
             <!-- slide contents-->
@@ -77,7 +75,7 @@
                     <div class="carousel-caption d-md-block">    
                         <h2>Observe abaixo os principais dados em tempo real!</h2>
                         <p>Acompanhe a coleta de dados de seu robô</p>
-                        <a class="main-btn" id="data-slide">Ver dados</a>
+                        <a href="/login" class="main-btn" id="data-slide">Ver dados</a>
                     </div>
                 </div>
 
@@ -94,18 +92,6 @@
                     </div>
                 </div>
 
-                <!-- slide content 3 -->
-                <!-- image of slide -->
-                <div class="carousel-item">
-                    <img src="/static/images/Roadsec.jpeg" class="d-block w-100" alt="Confira mais sobre os desenvolvedores">
-                    <!-- text of slide -->
-                    <div class="carousel-caption d-md-block">    
-                        <h2>Dados específicos em nosso dashboard!</h2>
-                        <p>Acompanhe o registro de dados em tabelas e gráficos</p>
-                        <a href="http://roboaranalytics.pythonanywhere.com/dashboard" class="main-btn" target="blank">Painel de Controle</a>
-                    </div>
-                </div>
-
             </div>
             
             <!-- arrow to change slide -->
@@ -117,26 +103,6 @@
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="sr-only">Next</span>
             </a>
-
-        </div>
-
-        <!-- data area -->
-        <div id="data-area">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12"> <!-- 12 colunes -->
-                        <h3 class="main-title">Dados em tempo real</h3>
-                    </div>
-                    <div class="col-md-6"> <!-- respect determinated space of page -->
-                        <h3 class="data-title">Temperatura (ºC)</h3>
-                        <p id="data1">Teste</p>
-                    </div>
-                    <div class="col-md-6"> <!-- respect determinated space of page -->
-                        <h3 class="data-title">Dados de fal</h3>
-                        <p id="data2">Teste</p>
-                    </div>
-                </div>
-            </div>
 
         </div>
 

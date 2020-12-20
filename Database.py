@@ -2,6 +2,18 @@ from os import path
 ROOT = path.dirname(path.realpath(__file__))
 import sqlite3
 
+
+def custom_query(query:str,has_ret:bool = False):
+    con,cursor = get_connection()
+
+
+    cursor.execute(query)
+    if(has_ret):
+        return cursor.fetchall()
+    else:
+        con.commit()
+
+
 def get_connection():
     con = sqlite3.connect(ROOT+"/databases/"+f"data.bd")
     cursor = con.cursor()
@@ -43,15 +55,17 @@ def insert_table(table:str,data:list):
 
 #########################################################Requisições############################################
 
-def get_table(table:str,rows:int=10,order:int=0):
+def get_table(table:str,user:str,rows:int=10,order:int=0):
     con,cursor = get_connection()
     
-    query = f"""SELECT * FROM {table}"""
+    query = f"""SELECT Date,Value,User FROM {table} WHERE User='{user}' """
 
     if(order==1):
        query += f" ORDER BY Value ASC"
     elif(order==2):
        query += f" ORDER BY Value DESC"
+    else:
+        query += f" ORDER BY Date DESC"
 
     query += f" LIMIT {rows}"
 
@@ -117,7 +131,7 @@ def get_pass(user:str):
 #print(get_temperature_all())
 #app.run()
 
-##create_table("Temperature",[["Date","TEXT"],["Value","INTEGER"]])
+#custom_query("DROP TABLE Temperature")
+#create_table("Temperature",[["Date","TEXT"],["Value","INTEGER"],["User","TEXT"],["PRIMARY KEY ", "(Date, User)"]])
 ##create_table("User",[["Name","TEXT PRIMARY KEY"],["Password","TEXT"]])
-
 

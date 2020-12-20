@@ -100,8 +100,8 @@ def register_user():
 
 #########################################################GET#######################################
 
-@app.route("/data/<table>")
-def _return_data(table):
+@app.route("/data/<user>/<table>")
+def _return_data(user,table):
 
     args = table.split(";")
 
@@ -115,10 +115,10 @@ def _return_data(table):
                 order = 2
             elif args[a].isnumeric():
                 rows = int(args[a])
-        return flask.jsonify(Database.get_table(args[0],order=order,rows=rows))
+        return flask.jsonify(Database.get_table(args[0],user,order=order,rows=rows))
                  
     else:
-        return flask.jsonify(Database.get_table(table))
+        return flask.jsonify(Database.get_table(table,user))
 
 #########################################################POST#######################################
 
@@ -135,15 +135,6 @@ def _insert_json():
     Database.insert_table(data["Table"],values)
     return "JSON IS COOL!"
 
-@app.route("/upload/<table>:<value>")
-def _insert(table,value):
-    values = ["10/10"]
-    for i in value.split(';'):
-        values.append(int(i))
-    Database.insert_table(table,values)
-    print(values)
-
-    return "Sucess upload"
 
 
 

@@ -58,7 +58,7 @@ def insert_table(table:str,data:list):
 def get_table(table:str,user:str,rows:int=10,order:int=0):
     con,cursor = get_connection()
     
-    query = f"""SELECT Date,Value,User FROM {table} WHERE User='{user}' """
+    query = f"""SELECT Date,Value FROM {table} WHERE User='{user}' """
 
     if(order==1):
        query += f" ORDER BY Value ASC"
@@ -134,4 +134,3 @@ def get_pass(user:str):
 #custom_query("DROP TABLE Temperature")
 #create_table("Temperature",[["Date","TEXT"],["Value","INTEGER"],["User","TEXT"],["PRIMARY KEY ", "(Date, User)"]])
 ##create_table("User",[["Name","TEXT PRIMARY KEY"],["Password","TEXT"]])
-

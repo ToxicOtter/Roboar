@@ -1,23 +1,73 @@
+$(document).ready(function(){
+    var temperatureData = [];
+    // atualize div
+    $(function() {
+        setTime();
+        function setTime() {
+            $.ajax({
+                type: "GET",
+                url: "http://127.0.0.1:5000/data/Leonardo/Temperature",
+                dataType: 'json',
+                success: function(data) {
+                    temperatureData = Object.entries(data);
+                    actualize(temperatureData);
+                }
+            });
+            function actualize(temperatureData){
+                var otherstring = Math.floor(Math.random() * 10);
+                setTimeout(setTime, 3000);
+                $('#data1').html(String(temperatureData[0][1][1]));
+                $('#data2').html(otherstring);
+            };
+        };
+    });
+    getDat();
+});
+
+nameFunction();
+function nameFunction(){
+    const userPath = document.getElementById("userName");
+    var userName = localStorage.getItem("Name");
+    userPath.innerHTML = "Bem vindo, " + userName + "!";
+};
+
+
 var temperatureData = [];
 
+//GET DATA FROM JSON https://cors-anywhere.herokuapp.com/http://roboaranalytics.pythonanywhere.com
+function getDat(){
+    $.ajax({
+        type: "GET",
+        url: "http://127.0.0.1:5000/data/Leonardo/Temperature",
+        dataType: 'json',
+        success: function(data) {
+            temperatureData = Object.entries(data);
+            chart(temperatureData);
+            listMaker(temperatureData);
+        }
+    }); 
+};
 
-$(document).ready(function(){
-    //GET DATA FROM JSON
-    function getDat(){
-        $.ajax({
-            type: "GET",
-            //url: "https://cors-anywhere.herokuapp.com/http://roboaranalytics.pythonanywhere.com/data/Temperature",
-            url: "http://127.0.0.1:5000/data/Leonardo/Temperature",
-            dataType: 'json',
-            success: function(data) {
-                temperatureData = Object.entries(data);
-                console.log(temperatureData)
-                chart(temperatureData);
-                listMaker(temperatureData);
-            }
-        }); 
-    };
-    getDat();
+//nav bar controls
+//data area and graph paths
+const dataArea = document.getElementById("data-area");
+const graphArea = document.getElementById("chart");
+const tableArea = document.getElementById("listDiv");
+
+//data area control
+const data = document.getElementById("data-show");
+data.addEventListener('click', function(){
+    dataArea.style.display = "block";
+    graphArea.style.display = "none";
+    tableArea.style.display = "none";
+});
+
+//temperature control
+const temperatureButton = document.getElementById("temperatureId");
+temperatureButton.addEventListener('click', function(){
+    dataArea.style.display = "none";
+    graphArea.style.display = "block";
+    tableArea.style.display = "block";
 });
 
 // SIDEBAR
@@ -27,8 +77,6 @@ const showNavbar = (toggleId, navId, bodyId, headerId) =>{
     nav = document.getElementById(navId),
     bodypd = document.getElementById(bodyId),
     headerpd = document.getElementById(headerId) 
-
-
     //validate that all variables exist
     if(toggle && nav && bodypd && headerpd){
         toggle.addEventListener('click', ()=>{
@@ -47,9 +95,7 @@ const showNavbar = (toggleId, navId, bodyId, headerId) =>{
 showNavbar('header-toggle', 'nav-bar', 'body-pd', 'header');
 
 //linl-active
-
 const linkColor = document.querySelectorAll('.nav__link');
-
 function colorLink(){
     if(linkColor){
         linkColor.forEach(l => l.classList.remove('active'))
@@ -59,15 +105,26 @@ function colorLink(){
 
 linkColor.forEach(l => l.addEventListener('click', colorLink));
 
-
 //CHARTS
 function chart(temperatureData){
     //to get values
     //temperatureData is received by ajax in the ready function
     //sensor date
-    var temperatureV1 = [String(temperatureData[9][1][0]),String(temperatureData[8][1][0]),String(temperatureData[7][1][0]),String(temperatureData[6][1][0]),String(temperatureData[5][1][0]),String(temperatureData[4][1][0]),String(temperatureData[3][1][0]),String(temperatureData[2][1][0]),String(temperatureData[1][1][0]),String(temperatureData[0][1][0])];
-    //sensor data
-    var temperatureV2 = [Number(temperatureData[9][1][1]),Number(temperatureData[8][1][1]),Number(temperatureData[7][1][1]),Number(temperatureData[6][1][1]),Number(temperatureData[5][1][1]),Number(temperatureData[4][1][1]),Number(temperatureData[3][1][1]),Number(temperatureData[2][1][1]),Number(temperatureData[1][1][1]),Number(temperatureData[0][1][1])];
+    let temperatureV1 = [];
+    let temperatureV2 = [];
+    let i;
+
+    if (temperatureData.length >= 10){
+        i=9;
+    } else {
+        i = Number(temperatureData.length); 
+    };
+
+    for (i; i >= 0; --i){
+        temperatureV1.push(String(temperatureData[Number(i)][1][0]));
+        temperatureV2.push(String(temperatureData[Number(i)][1][1]));
+    };
+
     // everytime we work with canvas, we need to set a context, in this case it's 2D (default)
     var ctx = document.getElementsByClassName('line-chart');
 
@@ -84,17 +141,16 @@ function chart(temperatureData){
                 borderColor: 'rgba(77,176,253,0.75)',
                 backgroundcolor: 'transparent',
             }]
-        }
+        },
     });
 };
-
+    
 //TABLE
 function listMaker(temperatureData){
-    let listData = temperatureData; //to receive data
-    let listContainer = document.createElement("div"); //create list container
+    //let listContainer = document.createElement("div"); //create list container
+    let listContainer = document.getElementById("listDiv");
     let listName = document.createElement("h2"); //create the list title
     let listElement = document.createElement("ul"); //create list element
-    let numberOfList = listData.length; //count list elements
     let i; // create a variable to for
 
     listName.appendChild(document.createTextNode("Tabela")); //define title name
@@ -109,11 +165,12 @@ function listMaker(temperatureData){
     listH1.appendChild(document.createTextNode("Data")); //add the first list header title
     listH2.appendChild(document.createTextNode("Temperatura (em ºC)")); //add the second list header title
 
-
     //give classes and ids
+    listContainer.style.display = "none";
     listContainer.className += "container"; 
+    listContainer.id += "lista";
     listElement.className += "responsive-table";
-   
+
     document.getElementsByTagName('body')[0].appendChild(listContainer); //add the container (div) to body
     listContainer.appendChild(listName); //add the title (h2) to container (div)
     listContainer.appendChild(listElement); //add the list (ul) to container (div)
@@ -121,37 +178,31 @@ function listMaker(temperatureData){
     listHeader.appendChild(listH1); //add the first list header title (div) to the header (li)
     listHeader.appendChild(listH2); //add the second list header title (div) to the header (li)
 
+    if (temperatureData.length >= 10){
+        i=9;
+    } else {
+        i = Number(temperatureData.length); 
+    };
+
     //add to page
-    for (i =0; i < numberOfList; ++i){
+    for (i; i >= 0; --i){
         let listDiv1 = document.createElement("div"); //create the first element of the row
         let listDiv2 = document.createElement("div"); //create the second element of the row
         let listItem = document.createElement("li"); //create the row
 
 
         //give value
-        let value1 = listData[i][1][0]; //select all 0 index of the first item of the i array
-        let value2 = listData[i][1][1]; //select all 1 index of the first item of the i array
-        
+        let value1 = temperatureData[i][1][0]; //select all 0 index of the first item of the i array
+        let value2 = temperatureData[i][1][1]; //select all 1 index of the first item of the i array
         listDiv1.appendChild(document.createTextNode(String(value1))); //add the value to the first element
         listDiv2.appendChild(document.createTextNode(String(value2))); //add the value to the second element
         
         listDiv1.className = "col col-1"; //give class to the first element
         listDiv2.className = "col col-2"; //give class to the second element
         listItem.className += "table-row"; //give class to the row
-
         //add to page
         listItem.appendChild(listDiv1); //add the first element (div) to the row (li)
         listItem.appendChild(listDiv2); //add the second element (div) to the row (li)
         listElement.appendChild(listItem); //add the row (li) to the list (ul)
     };
-
-};
-
-/*$(function() {
-    setTime();
-    function setTime() {
-       var date = new Date().getTime();
-       var string = "Timestamp: "+date;
-       setTimeout(setTime, 3000);
-    }
-});*/
+}; 

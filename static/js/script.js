@@ -1,28 +1,5 @@
 $(document).ready(function(){
-    var temperatureData = [];
-    // atualize div
-    $(function() {
-        setTime();
-        function setTime() {
-            $.ajax({
-                type: "GET",
-                url: "https://cors-anywhere.herokuapp.com/http://roboaranalytics.pythonanywhere.com/data/Temperature",
-                dataType: 'json',
-                success: function(data) {
-                    temperatureData = Object.entries(data);
-                    actualize(temperatureData);
-                }
-            });
-            function actualize(tempperatureData){
-                var otherstring = Math.floor(Math.random() * 10);
-                setTimeout(setTime, 3000);
-                $('#data1').html(String(temperatureData[0][1][1]));
-                $('#data2').html(otherstring);
-            };
-        }
-    });
-
-//animated scroll
+    //animated scroll
     //buttons
     let navBtn = $('.nav-item');
     let mainBtn = $('.main-btn');
